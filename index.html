@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Correct the UTC offset of your Kamaitachi BATCH-MANUAL score export. Process and download JSON privately in your browser.">
+    <meta name="theme-color" content="#f7f8fc">
+    <title>Tachi Timestamp Fixer</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./timestamp-fixer.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page">
+      <main>
+        <section class="tool" aria-label="Timestamp correction tool">
+          <div class="tool-heading"><h1>Tachi Timestamp Fixer</h1></div>
+
+          <div class="step upload-step">
+            <label class="drop-zone" id="drop-zone" for="file-input">
+              <input class="file-input" id="file-input" type="file" accept=".json,application/json" aria-describedby="upload-hint">
+              <span class="upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m-4 4 4-4 4 4M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></span>
+              <strong id="upload-title">Drop your BATCH-MANUAL JSON here</strong>
+              <span id="upload-hint">or <span class="browse-link">browse files</span> · .json</span>
+            </label>
+            <div class="file-details" id="file-details" hidden>
+              <strong id="file-name"></strong>
+              <button class="text-button" id="clear-file" type="button" aria-label="Remove selected file">Remove</button>
+            </div>
+          </div>
+
+          <div class="step offset-step">
+            <p class="field-help" id="offset-help">Choose the service’s offset when the scores were recorded. For example, UTC+09:00 moves timestamps back 9 hours.</p>
+            <select id="utc-offset" aria-label="Server UTC offset" aria-describedby="offset-help">
+              <option value="540" selected>UTC+09:00 (JST)</option>
+            </select>
+            <div class="shift-note" id="shift-note" hidden><span aria-hidden="true">↳</span><span id="shift-description"></span></div>
+          </div>
+
+          <div class="tool-footer">
+            <p class="message" id="message" role="status" aria-live="polite" aria-atomic="true"></p>
+            <button class="download-button" id="download-button" type="button" disabled>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4"/></svg>
+              Download corrected JSON
+            </button>
+            <noscript><p class="noscript">Enable JavaScript to correct your file.</p></noscript>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+  </body>
+</html>
